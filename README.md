@@ -84,7 +84,7 @@ Tableau Dashboard: Interactive visualization of key trends
 Business Insights Report: Actionable recommendations for Bellabeat
 
  ## Links
-Tableau Dashboard: View Here ([Insert your Tableau Public link](https://public.tableau.com/views/FitnessAppDashboard_17546074250420/FitnessAppDashboard?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link))
+Tableau Dashboard: View Here ([Tableau Public link](https://public.tableau.com/views/FitnessAppDashboard_17546074250420/FitnessAppDashboard?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link))
 
 Dataset: Fitbit Fitness Tracker Data on Kaggle ([Here](https://www.kaggle.com/datasets/arashnic/fitbit))
 
