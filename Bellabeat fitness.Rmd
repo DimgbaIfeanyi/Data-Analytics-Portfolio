@@ -1,0 +1,244 @@
+---
+title: "Bellabeat fitness"
+author: "Ifeanyi Dimgba"
+date: "2025-08-07"
+output: html_document
+---
+## Introduction
+This document analyzes sleep trends from the Bellabeat dataset...
+
+## Load Libraries
+```{r}
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(skimr)
+```
+##Import Data
+```{r}
+daily_activity <- read_csv("dailyActivity_merged.csv")
+sleep_data <- read_csv("sleepDay_merged.csv")
+```
+
+## Clean Data
+
+# Standardize column names
+```{r}
+daily_activity <- clean_names(daily_activity)
+sleep_data <- clean_names(sleep_data)
+```
+# Convert date formats
+```{r}
+daily_activity <- daily_activity %>%
+  mutate(date = mdy(activity_date))
+
+sleep_data <- sleep_data %>%
+  mutate(date = mdy(date))
+```
+# Check for duplicates
+```{r}
+sleep_data <- sleep_data %>% distinct()
+daily_activity <- daily_activity %>% distinct()
+```
+
+# Preview the data
+```{r}
+glimpse(daily_activity)
+glimpse(sleep_data)
+```
+
+# Create merge key
+```{r}
+daily_activity <- daily_activity %>%
+  mutate(merge_key = paste(id, date, sep = "_"))
+
+sleep_data <- sleep_data %>%
+  mutate(merge_key = paste(id, date, sep = "_"))
+```
+
+# Merge on merge_key
+```{r}
+merged_data <- left_join(daily_activity, sleep_data, by = "merge_key")
+```
+
+# Summary of key features
+```{r}
+skim(merged_data)
+```
+
+# Average steps by activity level
+```{r}
+merged_data %>%
+  group_by(very_active_minutes) %>%
+  summarise(avg_steps = mean(total_steps, na.rm = TRUE))
+```
+
+# Add total active minutes
+```{r}
+merged_data <- merged_data %>%
+  mutate(total_active_minutes = very_active_minutes + fairly_active_minutes + lightly_active_minutes)
+```
+
+# Activity level category
+```{r}
+merged_data <- merged_data %>%
+  mutate(activity_level = case_when(
+    total_steps >= 10000 ~ "Highly Active",
+    total_steps >= 5000 ~ "Moderately Active",
+    TRUE ~ "Lightly Active"
+  ))
+```
+
+## Plot the Calories vs Active minutes Scatter plot
+```{r}
+ggplot(merged_data, aes(x = total_active_minutes, y = calories)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkred") +
+  labs(title = "Calories vs. Active Minutes",
+       x = "Total Active Minutes",
+       y = "Calories Burned")
+```
+
+
+
+
+
+```{r}
+library(readr)
+sleep_data <- read_csv("sleepDay_merged.csv")
+```
+
+```{r}
+library(lubridate)
+library(dplyr)
+```
+
+# Assuming you've already imported sleep_data from sleepDay_merged.csv
+# and it has a column called 'date' like "4/13/2016"
+
+# Step 1: Convert the date column to Date format
+```{r}
+sleep_data <- sleep_data %>%
+  mutate(
+    date = mdy(date),  # Converts "4/13/2016" into proper Date format
+    day_of_week = wday(date, label = TRUE, abbr = TRUE)  # Add weekday name
+  )
+```
+
+# Step 2: Check it worked
+```{r}
+head(sleep_data[c("date", "day_of_week")], 10)
+
+glimpse(sleep_data)
+
+nrow(sleep_data)
+
+library(lubridate)
+```
+
+# Convert character column 'date' to proper Date format
+```{r}
+sleep_data$date <- mdy(sleep_data$date)
+```
+
+# Confirm the change
+```{r}
+str(sleep_data)
+head(sleep_data$date)
+sleep_data$weekday <- weekdays(sleep_data$date)
+```
+
+```{r}
+library(ggplot2)
+```
+
+# Bar chart of sleep records per weekday
+```{r}
+ggplot(sleep_data, aes(x = weekday)) +
+  geom_bar(fill = "steelblue") +
+  labs(
+    title = "Number of Sleep Records per Weekday",
+    x = "Day of the Week",
+    y = "Number of Records"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+sleep_data$weekday <- factor(
+  sleep_data$weekday,
+  levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+)
+```
+
+# Group and calculate average sleep
+```{r}
+avg_sleep <- sleep_data %>%
+  group_by(weekday) %>%
+  summarise(avg_minutes_asleep = mean(TotalMinutesAsleep, na.rm = TRUE))
+```
+
+```{r}
+ggplot(avg_sleep, aes(x = weekday, y = avg_minutes_asleep)) +
+  geom_col(fill = "seagreen") +
+  labs(
+    title = "Average Total Minutes Asleep per Weekday",
+    x = "Day of the Week",
+    y = "Avg Minutes Asleep"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+ggplot(sleep_data, aes(x = TotalTimeInBed, y = TotalMinutesAsleep)) +
+  geom_point(color = "purple", alpha = 0.6) +
+  labs(
+    title = "Total Minutes Asleep vs Total Time in Bed",
+    x = "Total Time in Bed (min)",
+    y = "Total Minutes Asleep (min)"
+  ) +
+  theme_minimal()
+```
+
+
+
+```{r}
+ggplot(sleep_data, aes(x = date, y = TotalMinutesAsleep)) +
+  geom_line(color = "orange") +
+  labs(
+    title = "Sleep Trend Over Time",
+    x = "Date",
+    y = "Total Minutes Asleep"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(sleep_data, aes(x = TotalMinutesAsleep)) +
+  geom_histogram(fill = "darkcyan", bins = 20, color = "white") +
+  labs(
+    title = "Distribution of Total Minutes Asleep",
+    x = "Total Minutes Asleep",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+ggplot(sleep_data, aes(x = weekday, y = TotalMinutesAsleep)) +
+  geom_boxplot(fill = "salmon") +
+  labs(
+    title = "Sleep Minutes by Day of the Week",
+    x = "Weekday",
+    y = "Total Minutes Asleep"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+write.csv(sleep_data, "fitbit_sleep_activity_cleaned.csv", row.names = FALSE)
+```
+
