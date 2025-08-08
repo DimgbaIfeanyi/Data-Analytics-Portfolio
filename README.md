@@ -47,7 +47,7 @@ Format: CSV files
 
 - Created interactive charts in Tableau
 
--Developed a dashboard for key insights
+- Developed a dashboard for key insights
 
 ## Project Files (what's in this folder)
 - `Bellabeat-fitness.Rmd` — The RMarkdown source (code + narrative).
