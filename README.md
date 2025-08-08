@@ -29,40 +29,52 @@ Format: CSV files
 # Methodology
 ## Data Cleaning
 
-Removed duplicates and null values
+- Removed duplicates and null values
 
-Standardized column names and formats
+- Standardized column names and formats
 
-Checked for data consistency across tables
+- Checked for data consistency across tables
 
 ## Exploratory Data Analysis
 
-Activity vs. calories burned
+- Activity vs. calories burned
 
-Sleep duration vs. activity levels
+- Sleep duration vs. activity levels
 
-Steps distribution across weekdays and weekends
+- Steps distribution across weekdays and weekends
 
 ## Visualization
 
-Created interactive charts in Tableau
+- Created interactive charts in Tableau
 
-Developed a dashboard for key insights
+-Developed a dashboard for key insights
+
+## Project Files (what's in this folder)
+- `Bellabeat-fitness.Rmd` — The RMarkdown source (code + narrative).
+- `Bellabeat-fitness.html` — Rendered HTML report (click to view).
+- `bellabeat_cleaned_data.csv` — The cleaned dataset used in analysis.
+- `tableau_screenshot.png` — Preview image of the Tableau dashboard.
+- `README.md` — This file (you’re reading it).
+- `NOTES_TABLEAU.txt` — Tableau Public link.
+
 
 ## Key Findings
-Users meeting 7,500+ daily steps tend to burn significantly more calories.
+- Many users do not consistently log sleep (data completeness issue).  
+- Higher active minutes correlate with more calories burned.
+- Users meeting 7,500+ daily steps tend to burn significantly more calories.
+- Most active days occur midweek, suggesting weekday habits drive fitness behavior.
+- Sleep duration averages around 7 hours, with a noticeable drop on weekends.
+- Activity tends to dip on weekends — marketing should target midweek engagement.
 
-Sleep duration averages around 7 hours, with a noticeable drop on weekends.
-
-Most active days occur midweek, suggesting weekday habits drive fitness behavior.
 
 ## Recommendations
-Gamify step goals with streak rewards to boost activity consistency.
-
-Encourage better sleep tracking with reminders and wellness tips.
-
-Promote weekday workout challenges to take advantage of higher activity patterns.
-
+- Gamify step goals with streak rewards to boost activity consistency.
+- Use push reminders and gamification to boost sleep logging & activity consistency.  
+- Promote weekday fitness challenges and sleep hygiene tips.  
+- Test targeted campaigns for users who show intermittent logging.
+- Encourage better sleep tracking with reminders and wellness tips.
+- Promote weekday workout challenges to take advantage of higher activity patterns.
+- Promote step-count tracking as a key fitness metric. Consider building app features or device alerts that celebrate step goals, and launch campaigns encouraging users to hit personalized step milestones.
 ## Deliverables
 R Scripts: Data cleaning and EDA
 
@@ -73,4 +85,11 @@ Business Insights Report: Actionable recommendations for Bellabeat
  ## Links
 Tableau Dashboard: View Here ([Insert your Tableau Public link](https://public.tableau.com/views/FitnessAppDashboard_17546074250420/FitnessAppDashboard?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link))
 
-Dataset: Fitbit Fitness Tracker Data on Kaggle
+Dataset: Fitbit Fitness Tracker Data on Kaggle ([Here](https://www.kaggle.com/datasets/arashnic/fitbit))
+
+##  Contact
+- **Email:** dimgbaifeanyio@gmail.com  
+- **LinkedIn:** https://linkedin.com/in/ifeanyidimgba
+- **GitHub:** https://github.com/DimgbaIfeanyi
+
+
