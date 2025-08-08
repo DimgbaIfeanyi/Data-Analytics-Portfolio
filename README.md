@@ -56,6 +56,7 @@ Format: CSV files
 - `tableau_screenshot.png` — Preview image of the Tableau dashboard.
 - `README.md` — This file (you’re reading it).
 - `NOTES_TABLEAU.txt` — Tableau Public link.
+- `Bellabeat_cleaned.xlsx` - Has spreadsheets including charts, charts insights and data limitations.
 
 
 ## Key Findings
